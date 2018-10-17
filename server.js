@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
 const mongoose = require("mongoose");
+const { User } = require("./mongoose");
 require("dotenv").config();
 // const router = require("./app/routes/index");
 const app = express();
@@ -11,14 +12,17 @@ app.use(express.static(path.join(__dirname, "client/build")));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 mongoose.Promise = global.Promise;
-// ...
-// Right before your app.listen(), add this:
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+
+app.get("/users", (req, res) => {
+  User.find()
+    .then(response => {
+      console.log(response);
+      res.send(response);
+    })
+    .catch(err => {
+      console.log("xx", err);
+    });
 });
-
-// const generatePassword = require("password-generator");
-
 // app.use(router);
 
 mongoose.connect(
@@ -26,6 +30,9 @@ mongoose.connect(
   { useNewUrlParser: true }
 );
 
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
 app.listen(port, () => {
   console.log(`listening on port ${port}`);
 });
