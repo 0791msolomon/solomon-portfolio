@@ -22,7 +22,7 @@ app.get("*", (req, res) => {
 // app.use(router);
 
 mongoose.connect(
-  MONGODB_URI || "mongodb://localhost:27017/portfolio",
+  process.env.MONGODB_URI || "mongodb://localhost:27017/portfolio",
   { useNewUrlParser: true }
 );
 
