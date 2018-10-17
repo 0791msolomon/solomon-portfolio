@@ -16,11 +16,21 @@ mongoose.Promise = global.Promise;
 app.get("/users", (req, res) => {
   User.find()
     .then(response => {
-      console.log(response);
       res.send(response);
     })
     .catch(err => {
-      console.log("xx", err);
+      res.status(500).send();
+    });
+});
+app.post("/users", (req, res) => {
+  let user = new User({ text: req.body.text });
+  user
+    .save()
+    .then(response => {
+      res.send(response);
+    })
+    .catch(err => {
+      res.status(500).send();
     });
 });
 // app.use(router);
