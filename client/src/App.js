@@ -1,33 +1,34 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import "./App.css";
-import * as userServices from "./services/user.services";
+import Header from "./Components/Header";
+import Router from "./Components/Router";
+import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import { createStore, applyMiddleware } from "redux";
+import promise from "redux-promise";
+import rootReducer from "./reducers/Index.js";
 
 class App extends Component {
-  componentDidMount = () => {
-    userServices
-      .getAllUsers()
-      .then(response => console.log(response))
-      .catch(err => console.log(err));
+  state = {
+    response: ""
   };
+
   render() {
+    const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            add to heroku
-          </a>
-        </header>
-      </div>
+      <React.Fragment>
+        <Provider store={createStoreWithMiddleware(rootReducer)}>
+          <BrowserRouter>
+            <div className="bodyDiv">
+              <Header />
+
+              <div className="container routerContent">
+                <Router />
+              </div>
+            </div>
+          </BrowserRouter>
+        </Provider>
+      </React.Fragment>
     );
   }
 }
