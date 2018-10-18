@@ -1,8 +1,15 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
+import * as userServices from "./services/user.services";
 
 class App extends Component {
+  componentDidMount = () => {
+    userServices
+      .getAllUsers()
+      .then(response => console.log(response))
+      .catch(err => console.log(err));
+  };
   render() {
     return (
       <div className="App">
