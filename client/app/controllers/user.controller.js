@@ -1,4 +1,3 @@
-// const userService = require("../services/user.services");
 const { User } = require("../models/user");
 
 const getAll = (req, res) => {
@@ -11,4 +10,18 @@ const getAll = (req, res) => {
     });
 };
 
-module.exports = { getAll };
+const createUser = (req, res) => {
+  let user = new User({
+    text: req.body.text
+  });
+  user
+    .save()
+    .then(response => {
+      res.send(response);
+    })
+    .catch(err => {
+      res.status(500).send();
+    });
+};
+
+module.exports = { getAll, createUser };

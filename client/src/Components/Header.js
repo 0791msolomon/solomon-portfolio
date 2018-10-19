@@ -59,17 +59,6 @@ export default class Header extends Component {
                   Todo List
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link
-                  data-toggle="tooltip"
-                  data-placement="top"
-                  title="utilizes API to retrieve weather for given location"
-                  className="nav-link"
-                  to="/delete"
-                >
-                  Delete
-                </Link>
-              </li>
             </ul>
             <li className="form-inline my-2 my-lg-0, nav-item">
               <a className="nav-link" href="/">

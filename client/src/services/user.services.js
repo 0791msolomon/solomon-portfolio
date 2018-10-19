@@ -11,6 +11,16 @@ export const getAllUsers = () => {
     .catch(responseErrorHandler);
 };
 
+export const createUser = data => {
+  let config = {
+    data: data,
+    method: "POST"
+  };
+  return axios(baseUrl, config)
+    .then(responseSuccessHandler)
+    .catch(responseErrorHandler);
+};
+
 const responseSuccessHandler = response => {
   return response.data;
 };
