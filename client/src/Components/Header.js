@@ -10,7 +10,7 @@ export default class Header extends Component {
         </div>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
           <a className="navbar-brand" href="/">
-            Examples
+            About me
           </a>
           <button
             className="navbar-toggler"

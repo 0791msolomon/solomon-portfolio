@@ -17,7 +17,7 @@ const TodoTemplate = props => {
           <strong>Task- </strong>
           {props.task}
         </p>
-        <p className="card-text">
+        <p className="card-text" style={{ marginBottom: "10%" }}>
           <strong>
             {props.completed ? `Completed on- ${props.date}` : null}
           </strong>
@@ -27,7 +27,7 @@ const TodoTemplate = props => {
             className="btn-secondary"
             onClick={() => props.submit(props.info)}
           >
-            <strong>Completed</strong>
+            <strong>{props.completed ? "Incomplete" : "Completed"}</strong>
           </button>
           <button
             className="btn-danger"

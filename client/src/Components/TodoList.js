@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-import * as todoServices from "../services/todo";
+import * as todoServices from "../services/todo.services";
 import { getTodoList } from "../actions";
 import moment from "moment";
 import TodoTemplate from "./TodoTemplate";
@@ -114,10 +114,10 @@ class TodoList extends Component {
         <div className="todoButtonDiv">
           <button
             style={{ marginRight: "2%" }}
-            className=" btn-sm btn-success todoButton"
+            className=" btn-sm btn-info todoButton"
             onClick={() => this.displayAllTodos()}
           >
-            List All Todos
+            List All
           </button>
           <button
             className=" btn-sm btn-success todoButton"
